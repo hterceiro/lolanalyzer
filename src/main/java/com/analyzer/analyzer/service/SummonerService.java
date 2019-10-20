@@ -2,6 +2,7 @@ package com.analyzer.analyzer.service;
 
 import com.analyzer.analyzer.model.Summoner;
 import com.analyzer.analyzer.repository.SummonerRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
