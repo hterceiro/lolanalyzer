@@ -1,5 +1,6 @@
 package com.analyzer.analyzer.service;
 
+import com.analyzer.analyzer.model.MatchList;
 import com.analyzer.analyzer.model.MatchReference;
 import com.analyzer.analyzer.model.Summoner;
 import com.analyzer.analyzer.repository.MatchRepository;
@@ -53,15 +54,14 @@ public class MatchService {
     	matchRepository.save(match);
     }
     
-
-    public Summoner getSummonerByName(@PathVariable(value = "name") String name) throws IOException {
+    public MatchList getMatchListBySummonerId(String id) throws IOException {
     	ObjectMapper objectMapper = new ObjectMapper();
     	Http http = new  Http();
-    	String retorno = http.chamaUrl(urlBuilder.getSummonerByName(name));
-    	Summoner summoner = new Summoner();
-		summoner = objectMapper.readValue(retorno, Summoner.class);
+    	String retorno = http.chamaUrl(urlBuilder.getMatchList(id));
+    	MatchList match = new MatchList();
+    	match = objectMapper.readValue(retorno, MatchList.class);
 		
-        return summoner;
+        return match;
     }
     
     

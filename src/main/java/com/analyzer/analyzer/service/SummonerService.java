@@ -60,7 +60,7 @@ public class SummonerService {
     }
     
 
-    public Summoner getSummonerByName(@PathVariable(value = "name") String name) throws IOException {
+    public Summoner getSummonerByName(String name) throws IOException {
     	ObjectMapper objectMapper = new ObjectMapper();
     	Http http = new  Http();
     	String retorno = http.chamaUrl(urlBuilder.getSummonerByName(name));

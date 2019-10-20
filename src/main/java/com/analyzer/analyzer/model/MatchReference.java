@@ -26,7 +26,7 @@ public class MatchReference implements Serializable{
 	@Id
 	private long gameId;
 	private  int champion;
-	private String plataformId;
+	private String platformId;
 	private int season;
 	private int queue;
 	private String role;
@@ -40,8 +40,8 @@ public class MatchReference implements Serializable{
 		return champion;
 	}
 
-	public String getPlataformId() {
-		return plataformId;
+	public String getPlatformId() {
+		return platformId;
 	}
 
 	public int getSeason() {

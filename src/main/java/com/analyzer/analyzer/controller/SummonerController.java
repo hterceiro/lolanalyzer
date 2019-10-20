@@ -1,6 +1,8 @@
 package com.analyzer.analyzer.controller;
 
+import com.analyzer.analyzer.model.MatchList;
 import com.analyzer.analyzer.model.Summoner;
+import com.analyzer.analyzer.service.MatchService;
 import com.analyzer.analyzer.service.SummonerService;
 import com.analyzer.analyzer.url.Http;
 import com.analyzer.analyzer.url.UrlBuilder;
@@ -22,7 +24,7 @@ public class SummonerController {
     SummonerService summonerService;
     
     @Autowired
-    UrlBuilder urlBuilder;
+    MatchService matchService;
     
     
     @RequestMapping("/teste")
@@ -36,6 +38,15 @@ public class SummonerController {
 		summoner = summonerService.getSummonerByName(name);
 		summonerService.save(summoner);
         return summoner;
+    }
+    
+    @GetMapping("/summoner-match-list/{name}")
+    public MatchList getSummonerMatchListByName(@PathVariable(value = "name") String name) throws IOException {
+		Summoner summoner = new Summoner();
+		summoner = summonerService.getSummonerByName(name);
+		return matchService.getMatchListBySummonerId(summoner.getAccountId());
+//		summonerService.save(summoner);
+//        return summoner;
     }
 
     @PostMapping("/cadastrar-summoner")
