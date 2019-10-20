@@ -21,4 +21,8 @@ public class UrlBuilder {
 	public String getSummonerByName(String name) {
 		return "https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name+"?api_key="+KEY;
 	}
+	
+	public String getMatchList(String accaoutId) {
+		return "https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/"+accaoutId+"?api_key="+KEY;
+	}
 }

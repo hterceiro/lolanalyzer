@@ -1,5 +1,6 @@
 package com.analyzer.analyzer.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,10 +9,7 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Entity
-@Table(name = "match_list")
-@EntityListeners(AuditingEntityListener.class)
-public class MatchList {
+public class MatchList implements Serializable {
 
 	private List<MatchReference> matches;
 	private int totalGames;

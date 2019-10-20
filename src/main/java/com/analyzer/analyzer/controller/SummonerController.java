@@ -29,17 +29,11 @@ public class SummonerController {
     public String home(){
         return "Hello World!";
     }
-    
-    
 
     @GetMapping("/summoner-name/{name}")
     public Summoner getSummonerByName(@PathVariable(value = "name") String name) throws IOException {
-    	ObjectMapper objectMapper = new ObjectMapper();
-    	Http http = new  Http();
-    	String retorno = http.chamaUrl(urlBuilder.getSummonerByName(name));
-    	Summoner summoner = new Summoner();
-		summoner = objectMapper.readValue(retorno, Summoner.class);
-		
+		Summoner summoner = new Summoner();
+		summoner = summonerService.getSummonerByName(name);
 		summonerService.save(summoner);
         return summoner;
     }

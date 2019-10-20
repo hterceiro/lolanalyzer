@@ -1,17 +1,19 @@
 package com.analyzer.analyzer.service;
 
+import com.analyzer.analyzer.model.MatchReference;
 import com.analyzer.analyzer.model.Summoner;
+import com.analyzer.analyzer.repository.MatchRepository;
 import com.analyzer.analyzer.repository.SummonerRepository;
 import com.analyzer.analyzer.url.Http;
 import com.analyzer.analyzer.url.UrlBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.DataFormatReaders.Match;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.EntityManager;
@@ -23,40 +25,32 @@ import java.util.Optional;
 
 @Component
 @Service
-public class SummonerService {
+public class MatchService {
 
     @Autowired
-    SummonerRepository summonerRepository;
-    
+    MatchRepository matchRepository;
     
     @Autowired
     UrlBuilder urlBuilder;
 
-    @Bean
-    @Qualifier(value = "entityManager")
-    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
-
-        return entityManagerFactory.createEntityManager();
+    public void save(MatchReference match) {
+    	matchRepository.save(match);
     }
 
-    public void save(Summoner summoner) {
-        summonerRepository.save(summoner);
+    public List<MatchReference> getAllSummoners() {
+        return (List<MatchReference>) matchRepository.findAll();
     }
 
-    public List<Summoner> getAllSummoners() {
-        return (List<Summoner>) summonerRepository.findAll();
+    public void delete(MatchReference match) {
+    	matchRepository.delete(match);
     }
 
-    public void delete(Summoner summoner) {
-        summonerRepository.delete(summoner);
+    public Optional<MatchReference> getSummonerById(Long id) {
+        return matchRepository.findById(id);
     }
 
-    public Optional<Summoner> getSummonerById(Long id) {
-        return summonerRepository.findById(id);
-    }
-
-    public void update(Summoner summoner) {
-        summonerRepository.save(summoner);
+    public void update(MatchReference match) {
+    	matchRepository.save(match);
     }
     
 
